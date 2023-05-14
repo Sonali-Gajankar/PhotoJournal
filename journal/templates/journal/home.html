@@ -1,0 +1,49 @@
+{% extends "journal/base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Hero Section -->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Chronicle Your Memories In Pictures</h1>
+                <h2>A place where you cherish your most beautiful memories.</h2>
+                <button class="main__btn">
+                    <a href="/">Get Started</a>
+                </button>
+            </div>
+            <div class="img__container">
+                <img src="{% static 'journal/images/undraw_moments.svg' %}" alt="Moments" id="img_moments">
+            </div>
+
+        </div>
+    </div>
+    <div class="features">
+        <div class="features__intro">
+            <h2>What Echoes is all about</h2>
+            <p>Pictures tell many stories some we remember and some we forget over time. The motivation behind this app is to provide a means to hold these precious memories, tell their stories and look back on them when we wish to reminisce...</p>
+            <br>
+            <p>Echoes is a digital photo journal where you can share your memories and pen down your thoughts of the moment that was captured in the photos. It can be a place where you express your creative passions. </p>
+            <hr>
+        </div>
+        <h2 class="features__h2">What we offer</h2>
+        <div class="features__container">
+            <div class="features__card">
+                <div class="features__content">
+                    <h3>Create your own journey</h3>
+                    <p>Organize your photos to cherish a holiday or a short trip or just your daily progress of any task to keep you motivated and going.</p>
+                </div>
+                <img src="{% static 'journal/images/undraw_travel_together.svg' %}" alt="Journey" id="img_cards">
+            </div>
+            <div class="features__card">
+                <div class="features__content">
+                    <h3>Keep your memories safe</h3>
+                    <p>Put down your feelings or thoughts of the moments captured in those photographs</p>
+                </div>
+                <img src="{% static 'journal/images/undraw_polaroid.svg' %}" alt="Polaroid" id="img_cards">
+            </div>
+        </div>
+        <button class="main__btn">
+            <a href="/">Get Started</a>
+        </button>
+    </div>
+{% endblock %}

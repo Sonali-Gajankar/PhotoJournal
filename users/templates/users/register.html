@@ -1,0 +1,41 @@
+{% extends "journal/base.html" %}
+{% load static %}
+{% block content %}
+<div class="main">
+    <div class="signup__container">
+        <div class="form__container">
+            <form action="POST" class="signup__form">
+                {% csrf_token %}
+                <h2>Create An Account</h2>
+                <p>Already have an account? <a href="{% url 'login' %}">Log In Here</a></p>
+                <div class="signup__field">
+                    <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="signup__field">
+                    <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="signup__field">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email }}
+                </div>
+                <div class="signup__field">
+                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="signup__field">
+                    <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                    {{ form.password2 }}
+                </div>
+                <div class="signup__field">
+                    <button class="signup__btn">Sign Up</button>
+                </div>
+            </form>
+        </div>
+        <div class="img__signup_container">
+            <img src="{% static 'journal/images/undraw_enter.svg' %}" alt="Signup" id="img_features">
+        </div>
+    </div>
+</div>
+{% endblock %}
