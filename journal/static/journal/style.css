@@ -368,27 +368,27 @@ body, html {
     }
 }
 
-/* Sign Up */
-
-.signup__container {
+/* Sign Up/Login */
+.auth__container {
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     height: 100vh;
+    min-height: 600px;
     width: 100%;
     max-width: 1300px;
     padding: 0 50px;
 }
 
-.form__container {
+.auth_form__container {
     background: rgba(249, 248, 248, 0.45);
     border-radius: 15px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    max-width: 80%;
 }
 
 .signup__form {
@@ -425,47 +425,54 @@ body, html {
     font-size: var(--font-size-para);
 }
 
-.signup__field {
+.auth__field {
     display: flex;
     flex-direction: column;
 }
 
-.signup__field input {
+.auth__field input {
     margin-bottom: 30px;
     border: 3px solid #6B4768;;
     height: 40px;
     border-radius: 10px;
+    font-size: var(--font-size-para);
 }
 
-.signup__btn {
+.auth__btn {
     font-size: var(--font-size-subheading);
     background-color: var(--btn-color);
     padding: 15px 32px;
     border: none;
     border-radius: 15px;
-    margin: 0 auto;
     cursor: pointer;
     outline: none;
-    width: 200px;
     position: relative;
+    color: var(--main-text-color);
 }
 
-.img__signup_container {
+.auth__btn a {
+    text-decoration: none;
+    color: var(--main-text-color);
+}
+
+.img__auth_container {
     text-align: center;
 }
 
 @media screen and (max-width: 960px) {
-    .signup__container {
+    .auth__container {
         display: grid;
         grid-template-columns: auto;
         align-items: center;
         margin: 0 auto;
         padding: 0;
         width: 70%;
+        min-height: 800px;
     }
-    .form__container {
+    .auth_form__container {
         width: 100%;
         margin: 50px 0;
+        max-width: fit-content;
     }
 
     .signup__form {
@@ -473,52 +480,35 @@ body, html {
     }
 
     .signup__form h2 {
+        font-size: var(--font-size-subheading);
         padding-bottom: 10px;
     }
 
     .signup__form p {
+        font-size: 12px;
         padding-bottom: 30px;
     }
 
-    .signup__field label {
+    .auth__field label {
+        font-size: 15px;
         margin-bottom: 10px;
     }
 
-    .signup__field input {
-        margin-bottom: 30px;
+    .auth__field input {
+        margin-bottom: 20px;
         border: 3px solid #6B4768;;
         height: 40px;
         border-radius: 10px;
     }
 
-    .signup__btn {
+    .auth__btn {
+        font-size: var(--font-size-subheading);
         margin-top: 30px;
     }
 
-    .img__signup_container {
+    .img__auth_container {
         display: none;
     }
-}
-
-.login__container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    height: 100vh;
-    width: 100%;
-    max-width: 1300px;
-    padding: 0 50px;
-}
-
-.login_form__container {
-    background: rgba(249, 248, 248, 0.45);
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 80%;
 }
 
 .login__form {
@@ -555,11 +545,6 @@ body, html {
     font-size: var(--font-size-para);
 }
 
-.login__field {
-    display: flex;
-    flex-direction: column;
-}
-
 .login__forgot_password {
     display: flex;
     flex-direction: column;
@@ -567,15 +552,60 @@ body, html {
     padding-left: 50px;
 }
 
-.login__field input {
-    margin-bottom: 30px;
-    border: 3px solid #6B4768;;
-    height: 40px;
-    border-radius: 10px;
-    width: auto;
+.login__forgot_password a {
+    text-decoration: none;
+    color: var(--main-text-color);
 }
 
-.login__btn {
+@media screen and (max-width:960px) {
+    .login__form {
+        padding: auto;
+    }
+
+    .login__form h2 {
+        font-size: var(--font-size-subheading);
+        padding-bottom: 10px;
+    }
+
+    .login__form p {
+        font-size: 12px;
+        padding-bottom: 30px;
+    }
+    .login__form label {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .login__form input {
+        margin-bottom: 20px;
+        border: 3px solid #6B4768;;
+        height: 40px;
+        border-radius: 10px;
+    }
+}
+
+.reset__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+}
+
+
+.reset__form h2 {
+    font-size: var(--font-size-subheading);
+    color: var(--main-text-color);
+    padding-bottom: 20px;
+}
+
+.reset__form p {
+    font-size: 17px;
+    color: var(--main-text-color);
+    padding-bottom: 30px;
+}
+
+.reset__btn {
     font-size: var(--font-size-subheading);
     background-color: var(--btn-color);
     padding: 15px 32px;
@@ -583,60 +613,26 @@ body, html {
     border-radius: 15px;
     cursor: pointer;
     outline: none;
-    width: 150px;
     position: relative;
 }
 
-.img__login_container {
-    text-align: center;
-}
-
 @media screen and (max-width:960px) {
-    .login__container {
-        display: grid;
-        grid-template-columns: auto;
-        align-items: center;
-        padding: 0;
-        width: 70%;
-        margin: auto;
-    }
-
-    .login_form__container {
-        width: 100%;
-        margin: 50px 0;
-        max-width: fit-content;
-    }
-
-    .login__form {
+    .reset__form {
         padding: auto;
     }
 
-    .login__form h2 {
+    .reset__form h2 {
         padding-bottom: 10px;
     }
 
-    .login__form p {
+    .reset__form p {
         padding-bottom: 30px;
     }
 
-    .login__field label {
-        margin-bottom: 10px;
-    }
+}
 
-    .login__field input {
-        margin-bottom: 30px;
-        border: 3px solid #6B4768;;
-        height: 40px;
-        border-radius: 10px;
-    }
-
-    .login__btn {
-        margin-top: 30px;
-    }
-
-
-    .img__login_container {
-        display: none;
-    }
-
+.errorlist {
+    list-style: none;
+    color: red;
+    padding-bottom: 20px;
 }
