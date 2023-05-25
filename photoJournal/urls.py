@@ -16,16 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from users.views import RegisterUser
-from journal.views import home
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
-    path('login/', auth_views.LoginView.as_view(template_name="users/login.html", next_page="home"), name="login"),
-    path('logout/', auth_views.LogoutView.as_view(template_name="journal/home.html"), name="logout"),
+    path('', include('journal.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name="users/login.html", next_page="user_home"), name="login"),
+    path('logout/', auth_views.LogoutView.as_view(template_name="journal/home.html", next_page="login"), name="logout"),
     path('signup/', RegisterUser.as_view(), name="register"),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name="users/password_reset.html"),
          name="password_reset"),
@@ -36,3 +38,6 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name="users/password_reset_complete.html"),
          name="password_reset_complete"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,32 @@
+{% extends "journal/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="user_page">
+        <div class="upload__container">
+            <form method="POST" class="upload__form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="img__upload_container">
+                    {{ form.photo }}{{form.photo.errors}}
+                    <img src="{% static 'journal/images/undraw_upload.svg' %}" alt="Upload Photos" id="img_upload_photos">
+                </label>
+                <div class="page__field">
+                    <label for="{{ form.title.id_for_label }}" class="field__label">Title</label>
+                    {{ form.title }}{{form.photo.errors}}
+                </div>
+                <div class="page__field">
+                    <label for="{{ form.description.id_for_label }}" class="field__label">Description</label>
+                    {{ form.description }}{{form.photo.errors}}
+                </div>
+                <div class="page__field">
+                    <label for="{{ form.date.id_for_label }}" class="field__label">Date</label>
+                    {{ form.date }}{{form.photo.errors}}
+                </div>
+                <div class="upload_btn__container">
+                    <button class="upload__btn" type="submit">Save</button>
+                    <a class="upload__btn" href="{% url 'user_home' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

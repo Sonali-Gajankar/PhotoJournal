@@ -20,6 +20,13 @@
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </div>
+                {% if user.is_authenticated %}
+                <div class="navbar__btn">
+                    <button class="navbar__upload">
+                        <a href="{% url 'upload_photo' %}">Upload</a>
+                    </button>
+                </div>
+                {% endif %}
                 <ul class="navbar__menu">
                     {% if user.is_authenticated %}
                     <li class="navbar__item">
@@ -38,6 +45,8 @@
         </nav>
     </header>
     {% block content %}
+    {% endblock %}
+    {% block js %}
     {% endblock %}
     <script src="{% static 'journal/app.js' %}"></script>
 </body>

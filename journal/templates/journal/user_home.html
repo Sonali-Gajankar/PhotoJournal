@@ -1,0 +1,32 @@
+{% extends "journal/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="user_page">
+        <div class="user_page__container">
+            <div class="field__container">
+                <div class="user_page__field">
+                    <button class="user_page__btn">
+                        <a href="/">Photos</a>
+                    </button>
+                </div>
+                <div class="user_page__field">
+                    <button class="user_page__btn">
+                        <a href="/">Albums</a>
+                    </button>
+                </div>
+            </div>
+            {% if not photo_list %}
+            <h1>Let's Start Adding Some Memories</h1>
+            <div class="img__user_page_container">
+                <a href="{% url 'upload_photo' %}" class="img__field">
+                    <img src="{% static 'journal/images/undraw_posting_photo.svg' %}" alt="Upload Photos" id="img_upload_photos">
+                </a>
+            </div>
+            <label>Click to upload photo</label>
+            {% else %}
+            <label>There are photos</label>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

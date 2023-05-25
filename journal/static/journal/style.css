@@ -1,10 +1,13 @@
 :root {
     --main-text-color: #0F1108;
     --main-bg-color: #F9F8F8;
+    --text-color-secondary: #C6C5B7;
     --btn-color: #FAA424;
+    --btn-color-user: #C7BAC5;
     --font-size-heading: 32px;
     --font-size-subheading: 24px;
     --font-size-para: 20px;
+    --font-size-mobile-para: 15px;
 }
 * {
     box-sizing: border-box;
@@ -57,6 +60,7 @@
     list-style: none;
     text-align: center;
     font-family: 'Libre Caslon Text';
+    margin-left: 20px;
 }
 
 .navbar__item {
@@ -80,6 +84,30 @@
     transition: all 0.3s ease;
 }
 
+.navbar__btn {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: 'Libre Caslon Text';
+    margin-left: auto;
+}
+
+.navbar__upload {
+    font-size: var(--font-size-subheading);
+    background-color: var(--btn-color-user);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+}
+
+.navbar__upload a {
+    color: var(--main-text-color);
+    text-decoration: none;
+}
+
 @media screen and (max-width: 960px){
     .navbar__container {
         display: flex;
@@ -89,6 +117,16 @@
         width: 100%;
         padding: 0;
         max-width: 1300px;
+    }
+
+    .navbar__btn {
+        position: absolute;
+        top: 20%;
+        right: 15%;
+    }
+
+    .navbar__upload {
+        font-size: var(--font-size-mobile-para);
     }
 
     .navbar__menu {
@@ -178,6 +216,7 @@ body, html {
     background: url("images/Desktop.svg") no-repeat center;
     background-size: cover;
     background-attachment: fixed;
+    font-family: 'Libre Caslon Text';
 }
 
 .main__container {
@@ -195,17 +234,16 @@ body, html {
 
 .main__content {
     margin-right: 50px;
+    color: var(--text-color-secondary);
 }
 
 .main__content h1 {
     font-family: 'Croissant One';
     font-size: var(--font-size-heading);
-    color: var(--main-bg-color);
 }
 
 .main__content h2 {
     font-size: var(--font-size-subheading);
-    color: var(--main-bg-color);
     margin-top: 50px;
 }
 
@@ -214,7 +252,7 @@ body, html {
     background-color: var(--btn-color);
     padding: 15px 32px;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     margin-top: 50px;
     cursor: pointer;
     outline: none;
@@ -307,6 +345,7 @@ body, html {
 }
 
 .features__h2 {
+    font-size: var(--font-size-subheading);
     width: 100%;
     max-width: 1300px;
 }
@@ -338,12 +377,21 @@ body, html {
 }
 
 .features__content h3{
+    font-size: var(--font-size-subheading);
     padding-bottom: 30px;
+}
+
+.features__content p{
+    font-size: var(--font-size-para);
 }
 
 @media screen and (max-width: 960px) {
     .features {
         height: 1300px;
+    }
+
+    .features__intro p{
+        font-size: var(--font-size-mobile-para);
     }
 
     .features__container {
@@ -366,6 +414,10 @@ body, html {
         padding: 20px;
         min-height: 200px;
     }
+
+    .features__content p{
+        font-size: var(--font-size-mobile-para);
+    }
 }
 
 /* Sign Up/Login */
@@ -384,7 +436,7 @@ body, html {
 
 .auth_form__container {
     background: rgba(249, 248, 248, 0.45);
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -443,7 +495,7 @@ body, html {
     background-color: var(--btn-color);
     padding: 15px 32px;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     outline: none;
     position: relative;
@@ -490,7 +542,7 @@ body, html {
     }
 
     .auth__field label {
-        font-size: 15px;
+        font-size: var(--font-size-mobile-para);
         margin-bottom: 10px;
     }
 
@@ -572,7 +624,7 @@ body, html {
         padding-bottom: 30px;
     }
     .login__form label {
-        font-size: 15px;
+        font-size: var(--font-size-mobile-para);
         margin-bottom: 10px;
     }
 
@@ -610,7 +662,7 @@ body, html {
     background-color: var(--btn-color);
     padding: 15px 32px;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     outline: none;
     position: relative;
@@ -636,3 +688,326 @@ body, html {
     color: red;
     padding-bottom: 20px;
 }
+
+.user_page {
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 50px;
+    margin: 0 auto;
+    font-family: 'Libre Caslon Text';
+}
+
+.user_page__container {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1300px;
+    width: 100%;
+}
+
+.field__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 20px 0;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+.user_page__btn {
+    font-size: var(--font-size-subheading);
+    background-color: var(--btn-color-user);
+    padding: 15px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    text-decoration: none;
+    color: var(--main-text-color);
+
+}
+
+.user_page__container h1 {
+    font-size: var(--font-size-heading);
+    margin: 100px 0;
+}
+
+.img__user_page_container {
+    margin: 50px;
+    text-align: center;
+}
+
+#img_upload_photos {
+    max-width: 80%;
+}
+
+@media screen and (max-width: 960px) {
+    .field__container {
+        width: auto;
+    }
+    .user_page__btn:nth-child(1){
+        margin-right: 50px;
+    }
+    .user_page__container h1 {
+        font-size: var(--font-size-subheading);
+        margin: 30px 0;
+    }
+
+    .user_page__btn {
+        font-size: var(--font-size-mobile-para);
+        padding: 15px 20px;
+    }
+}
+
+
+/* Create */
+
+#img__upload_field {
+    display: none;
+}
+
+.upload__container {
+    background: #6B4768;
+    border-radius: 10px;
+    margin: 70px 0;
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.upload__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 50px;
+    width: 90%;
+    font-family: 'Libre Caslon Text';
+    font-size: var(--font-size-para);
+}
+
+.img__upload_container {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 50px 0;
+    width: 100%;
+}
+
+#img_upload_photos {
+    background: #fff;
+    border-radius: 10px;
+}
+
+.page__field {
+    padding-bottom: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title,
+.description {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--main-text-color);
+    background: transparent;
+    color: var(--text-color-secondary);
+    transition: 0.3s ease;
+    overflow: hidden;
+    font-size: var(--font-size-para);
+}
+
+.field__label {
+    color: var(--text-color-secondary);
+    padding-bottom: 10px;
+}
+
+#date {
+    background-color: transparent;
+    padding-bottom: 15px;
+    width: fit-content;
+    border: none;
+    outline: none;
+    color: var(--text-color-secondary);
+    border-bottom: 1px solid var(--main-text-color);
+}
+
+.upload_btn__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.upload__btn {
+    font-size: var(--font-size-para);
+    background-color: var(--btn-color);
+    padding: 15px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    text-decoration: none;
+    color: var(--main-text-color);
+}
+
+@media screen and (max-width: 960px) {
+    .upload__container{
+        width: auto;
+    }
+
+    .upload__form {
+        padding: 10px 0;
+        font-size: var(--font-size-mobile-para);
+    }
+
+    .upload__btn {
+        font-size: var(--font-size-mobile-para);
+        padding: 15px 20px;
+    }
+
+    .title,
+    .description {
+        font-size: var(--font-size-mobile-para);
+    }
+}
+
+/* Photos */
+
+.photos_page {
+    background: url("images/Desktop.svg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 50px;
+    margin: 0 auto;
+    font-family: 'Libre Caslon Text';
+}
+
+.photos__container {
+    max-width: 1300px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+}
+
+figure {
+    background: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.content > span {
+    font-size: var(--font-size-subheading);
+}
+.icons {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.icons__menu {
+    opacity: 0;
+}
+
+.icons__menu.active {
+    opacity: 1;
+}
+
+.icons__menu > a{
+    margin-right: 5px;
+}
+
+.icons__menu > a > img {
+    width: 24px;
+}
+
+.icons__toggle {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.icons__toggle .dot{
+    background: var(--main-text-color);
+    width: 5px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    display: block;
+    border-radius: 20px;
+}
+
+
+.icons__toggle.is-active .dot:nth-child(2) {
+    opacity: 0;
+}
+
+.icons__toggle.is-active .dot:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+    width: 15px;
+}
+
+.icons__toggle.is-active .dot:nth-child(3) {
+    transform: translateY(-8px) rotate(45deg);
+    width: 15px;
+}
+
+figcaption {
+    font-size: var(--font-size-para);
+    margin: 10px;
+}
+
+figure > div {
+    margin: 10px;
+    font-size: var(--font-size-mobile-para);
+}
+
+@media screen and (max-width: 480px) {
+    .gallery__container{
+        width: 300px;
+    }
+
+    .content > span {
+        font-size: var(--font-size-para);
+    }
+
+    .icons {
+        width: 90px;
+    }
+
+    figcaption {
+        font-size: var(--font-size-mobile-para);
+    }
+
+    figure > div {
+        font-size: 12px;
+    }
+}
+
