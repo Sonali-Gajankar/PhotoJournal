@@ -1,9 +1,8 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import views, status
-from rest_framework import permissions
-from rest_framework.response import Response
+from rest_framework import pagination, generics
 
 from .models import PhotoJournal
 from .forms import UserPhotos
@@ -22,8 +21,13 @@ class UserHomeView(LoginRequiredMixin, generic.ListView):
     model = PhotoJournal
     form_class = UserPhotos
     context_object_name = "photo_list"
-    template_name = "journal/user_home.html"
+    # template_name = "journal/user_home.html"
     ordering = ['-date']
+
+    def get_template_names(self):
+        if PhotoJournal.objects.filter(user=self.request.user):
+            return "journal/user_photos.html"
+        return "journal/user_home.html"
 
 
 class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
@@ -36,14 +40,26 @@ class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
         form.instance.user = self.request.user
         return super(UploadPhotoView, self).form_valid(form)
 
+
+class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
+    model = PhotoJournal
+    context_object_name = "post"
+    success_url = reverse_lazy("user_home")
+
     def test_func(self):
-        self.request
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        return False
 
 
-class GetImagesView(views.APIView):
-    permission_classes = [permissions.IsAuthenticated]
+class CursorPaginationPage(pagination.CursorPagination):
+    page_size = 5
+    page_size_query_param = "page_size"
+    ordering = ["-date", "-id"]
 
-    def get(self, request, *args, **kwargs):
-        photos = PhotoJournal.objects.filter(user=request.user.id)
-        serializer = PhotoSerializer(photos, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FetchImagesView(LoginRequiredMixin, generics.ListAPIView):
+    queryset = PhotoJournal.objects.all()
+    serializer_class = PhotoSerializer
+    pagination_class = CursorPaginationPage

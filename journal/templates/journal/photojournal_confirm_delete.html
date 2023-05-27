@@ -1,0 +1,34 @@
+{% extends "journal/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="photos_page">
+        <div class="user_page__container">
+            <div class="field__container">
+                    <a class="user_page__btn" href="/">Photos</a>
+                    <a class="user_page__btn" href="/">Albums</a>
+            </div>
+        </div>
+        <div class="photos__container">
+            <div class="gallery__container">
+              <form method="POST">
+                  {% csrf_token %}
+                <figure>
+                  <section class="content">
+                      <span>{{ post.title }}</span>
+                  </section><hr>
+                  <figcaption class="content_description">{{ post.description }}</figcaption>
+                  <img src="{{ post.photo.url }}" alt="">
+
+                  <div>{{ post.date }}</div>
+                  <div class="delete_btn__container">
+                    <button class="delete_btn">Confirm Delete</button>
+                    <a href="{% url 'user_home' %}" class="delete_btn">Cancel</a>
+                  </div>
+
+              </figure>
+              </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.urls import reverse
+from PIL import Image
 
 from users.models import CustomUser
 
@@ -19,3 +20,9 @@ class PhotoJournal(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
+        img = Image.open(self.photo.path)
+        if img.width > 600 or img.height > 600:
+            resize = (600, 600)
+            img.thumbnail(resize)
+            img.save(self.photo.path)

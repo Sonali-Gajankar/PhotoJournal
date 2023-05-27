@@ -5,4 +5,4 @@ from .models import PhotoJournal
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhotoJournal
-        fields = ["title", "description", "date", "photo"]
+        fields = ["id", "title", "description", "date", "photo"]
