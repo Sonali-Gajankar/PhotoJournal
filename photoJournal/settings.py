@@ -33,7 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = env('TRUSTED_HOST')
+CSRF_TRUSTED_ORIGINS = [env('TRUSTED_HOST')]
 
 # Application definition
 
