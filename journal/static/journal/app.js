@@ -28,7 +28,7 @@ if(desc){
 const gallery_container = document.querySelector(".gallery__container");
 let next;
 if (gallery_container && window.location.pathname=="/user-home/") {
-    loadScript("http://127.0.0.1:8000/fetch-photos/");
+    loadScript("https://echoes.up.railway.app/fetch-photos/");
 }
 
 function loadScript(url){
