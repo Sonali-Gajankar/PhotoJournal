@@ -738,6 +738,12 @@ body, html {
     margin: 100px 0;
 }
 
+.user_page__container h3 {
+    font-size: var(--font-size-subheading);
+    color: var(--text-color-secondary);
+    margin-top: 50px;
+}
+
 .img__user_page_container {
     margin: 50px;
     text-align: center;
@@ -884,9 +890,9 @@ body, html {
 /* Photos */
 
 .photos_page {
-    background: url("images/Desktop.svg") no-repeat center;
+    /*background: url("images/Desktop.svg") no-repeat center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed;*/
     color: var(--main-text-color);
     display: flex;
     flex-direction: column;
@@ -898,6 +904,7 @@ body, html {
 }
 
 .photos__container {
+    margin: 50px 0;
     max-width: 1300px;
     display: flex;
     justify-content: center;
@@ -911,7 +918,7 @@ body, html {
 }
 
 figure {
-    background: var(--main-bg-color);
+    background: #D0CDE1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -922,7 +929,7 @@ figure {
 figure > img {
     width: 100%;
     max-height: 600px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .content {
@@ -1016,6 +1023,12 @@ figure > div {
     figure > div {
         font-size: 12px;
     }
+}
+.gallery__container_edit_del {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
 }
 
 .delete_btn__container {

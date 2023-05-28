@@ -22,7 +22,14 @@ class PhotoJournal(models.Model):
         super().save(*args, **kwargs)
 
         img = Image.open(self.photo.path)
-        if img.width > 600 or img.height > 600:
-            resize = (600, 600)
+        if img.width > 900 or img.height > 900:
+            resize = (900, 900)
             img.thumbnail(resize)
             img.save(self.photo.path)
+
+    def delete(self, *args, **kwargs):
+        stored_loc = self.photo.storage
+        path = self.photo.path
+
+        super().delete(*args, **kwargs)
+        stored_loc.delete(path)

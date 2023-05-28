@@ -14,5 +14,5 @@ class UserPhotos(ModelForm):
         model = PhotoJournal
         fields = ["title", "description", "date", "photo"]
         widgets = {'date': widgets.DateInput(
-            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd'})}
-
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd'}),
+            'photo': widgets.FileInput}

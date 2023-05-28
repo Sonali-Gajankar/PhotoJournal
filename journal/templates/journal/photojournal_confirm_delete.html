@@ -3,13 +3,10 @@
 {% block content %}
     <div class="photos_page">
         <div class="user_page__container">
-            <div class="field__container">
-                    <a class="user_page__btn" href="/">Photos</a>
-                    <a class="user_page__btn" href="/">Albums</a>
-            </div>
+            <h3>Are you sure you want to delete this photo?</h3>
         </div>
         <div class="photos__container">
-            <div class="gallery__container">
+            <div class="gallery__container_edit_del">
               <form method="POST">
                   {% csrf_token %}
                 <figure>

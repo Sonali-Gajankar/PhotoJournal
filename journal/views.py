@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,12 +12,13 @@ from .serializer import PhotoSerializer
 # Create your views here.
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect("user_home")
     return render(request, "journal/home.html")
 
 
 class UserHomeView(LoginRequiredMixin, generic.ListView):
     login_url = "/login/"
-    redirect_field_name = "redirect_to"
     model = PhotoJournal
     form_class = UserPhotos
     context_object_name = "photo_list"
@@ -51,6 +52,22 @@ class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
         if self.request.user == post.user:
             return True
         return False
+
+
+class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
+    model = PhotoJournal
+    template_name = "journal/upload_photo.html"
+    form_class = UserPhotos
+    context_object_name = "update_data"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UpdatePhotoView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdatePhotoView, self).get_context_data(**kwargs)
+        context["page_type"] = "Update"
+        return context
 
 
 class CursorPaginationPage(pagination.CursorPagination):

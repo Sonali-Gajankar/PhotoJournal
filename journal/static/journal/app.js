@@ -54,18 +54,6 @@ function loadScript(url){
         loadContentOnScroll(result.results);
         return result;
     })
-    .then(result => {
-        let update_toggle = document.querySelectorAll(".icons__toggle");
-        if(update_toggle){
-            update_toggle.forEach(function(elem){
-            elem.addEventListener("click", function(){
-                let update_icons = elem.previousElementSibling
-                elem.classList.toggle('is-active');
-                update_icons.classList.toggle('active');
-            })
-            })
-        }
-    })
     .catch(error => {
         console.log(error)
     })
@@ -81,7 +69,7 @@ function loadContentOnScroll(result){
             <div class="icons">
                 <div class="icons__menu">
                     <a href="${elem.id}/delete/"><i class="fa-solid fa-trash-can fa-lg" style="color: #0f1108;"></i></a>
-                    <a href="/"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #0f1108;"></i></a>
+                    <a href="update/${elem.id}/"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #0f1108;"></i></a>
                 </div>
                 <div class="icons__toggle">
                     <span class="dot"></span>
@@ -122,3 +110,10 @@ const handleInfiniteScroll = () => {
 if (gallery_container && window.location.pathname=="/user-home/") {
     window.addEventListener("scroll", handleInfiniteScroll);
 }
+
+document.addEventListener("click", function(event){
+    let target = event.target.closest(".icons__toggle");
+    let update_icons = target.previousElementSibling;
+    target.classList.toggle('is-active');
+    update_icons.classList.toggle('active');
+})
