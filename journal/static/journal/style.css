@@ -890,9 +890,9 @@ body, html {
 /* Photos */
 
 .photos_page {
-    /*background: url("images/Desktop.svg") no-repeat center;
+    background: url("images/Desktop.svg") no-repeat center;
     background-size: cover;
-    background-attachment: fixed;*/
+    background-attachment: fixed;
     color: var(--main-text-color);
     display: flex;
     flex-direction: column;
@@ -918,7 +918,7 @@ body, html {
 }
 
 figure {
-    background: #D0CDE1;
+    background: var(--main-bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -949,6 +949,7 @@ figure > img {
 
 .icons__menu {
     opacity: 0;
+    align-self: center;
 }
 
 .icons__menu.active {
