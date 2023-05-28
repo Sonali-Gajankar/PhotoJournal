@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.dispatch import receiver
+from django.db import models
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import pagination, generics
@@ -53,6 +55,9 @@ class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
             return True
         return False
 
+    @receiver(models.signals.post_delete, sender=PhotoJournal)
+    def remove_file_from_s3(sender, instance, using, **kwargs):
+        instance.photo.delete(save=False)
 
 class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
     model = PhotoJournal
@@ -69,6 +74,12 @@ class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
         context["page_type"] = "Update"
         return context
 
+    @receiver(models.signals.pre_save, sender=PhotoJournal)
+    def remove_old_file_from_s3(sender, instance, created=False, **kwargs):
+        if instance.pk:
+            old_img = PhotoJournal.objects.get(pk=instance.pk)
+            if old_img and old_img.photo.url != instance.photo.url:
+                old_img.photo.delete(save=False)
 
 class CursorPaginationPage(pagination.CursorPagination):
     page_size = 5
