@@ -34,8 +34,7 @@ class UserHomeView(LoginRequiredMixin, generic.ListView):
         return "journal/user_home.html"
 
     def get_queryset(self):
-        user = get_object_or_404(CustomUser, email=self.kwargs.get('email'))
-        return PhotoJournal.objects.filter(user=user).order_by('-date')
+        return PhotoJournal.objects.filter(user=self.request.user).order_by('-date')
 
 
 class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
