@@ -302,6 +302,8 @@ body, html {
 
     .main__btn {
         margin: 50px 0;
+        font-size: var(--font-size-para);
+        padding: 15px 20px;
     }
 
     #img_moments {
@@ -387,7 +389,7 @@ body, html {
 
 @media screen and (max-width: 960px) {
     .features {
-        height: 1300px;
+        height: 1400px;
     }
 
     .features__intro p{
@@ -411,12 +413,22 @@ body, html {
         display: grid;
         grid-template-columns: 75% 25%;
         align-items: center;
-        padding: 20px;
+        padding: 10px;
         min-height: 200px;
     }
 
     .features__content p{
         font-size: var(--font-size-mobile-para);
+    }
+
+    .features__content h3{
+        font-size: var(--font-size-para);
+    }
+
+    #img_cards {
+        width: 70px;
+        height: 70px;
+        padding-left: 10px;
     }
 }
 
