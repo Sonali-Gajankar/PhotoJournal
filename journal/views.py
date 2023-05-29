@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db import models
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import pagination, generics
+from rest_framework import pagination, generics, permissions
 
 from .models import PhotoJournal
 from .forms import UserPhotos
@@ -90,6 +90,9 @@ class CursorPaginationPage(pagination.CursorPagination):
 
 
 class FetchImagesView(LoginRequiredMixin, generics.ListAPIView):
-    queryset = PhotoJournal.objects.all()
     serializer_class = PhotoSerializer
     pagination_class = CursorPaginationPage
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return PhotoJournal.objects.all().filter(user=self.request.user)

@@ -7,7 +7,7 @@
             <form method="POST" class="signup__form">
                 {% csrf_token %}
                 <h2>Create An Account</h2>
-                <p>Already have an account? <a href="{% url 'login' %}">Log In Here</a></p>
+                <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
                 <div class="auth__field">
                     <label for="{{ form.first_name.id_for_label }}">First Name</label>
                     {{ form.first_name }}
