@@ -411,13 +411,19 @@ body, html {
         display: grid;
         grid-template-columns: 75% 25%;
         align-items: center;
-        padding: 20px;
+        padding: 10px;
         min-height: 200px;
     }
 
     .features__content p{
         font-size: var(--font-size-mobile-para);
     }
+
+    #img_cards {
+    width: 75px;
+    height: 75px;
+    padding-left: 10px;
+}
 }
 
 /* Sign Up/Login */
