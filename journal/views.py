@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.dispatch import receiver
 from django.db import models
@@ -6,6 +6,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import pagination, generics, permissions
 
+from users.models import CustomUser
 from .models import PhotoJournal
 from .forms import UserPhotos
 from .serializer import PhotoSerializer
@@ -31,6 +32,10 @@ class UserHomeView(LoginRequiredMixin, generic.ListView):
         if PhotoJournal.objects.filter(user=self.request.user):
             return "journal/user_photos.html"
         return "journal/user_home.html"
+
+    def get_queryset(self):
+        user = get_object_or_404(CustomUser, email=self.kwargs.get('email'))
+        return PhotoJournal.objects.filter(user=user).order_by('-date')
 
 
 class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
@@ -74,6 +79,12 @@ class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
         context = super(UpdatePhotoView, self).get_context_data(**kwargs)
         context["page_type"] = "Update"
         return context
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        return False
 
     @receiver(models.signals.pre_save, sender=PhotoJournal)
     def remove_old_file_from_s3(sender, instance, created=False, **kwargs):
