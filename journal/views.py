@@ -59,6 +59,7 @@ class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
     def remove_file_from_s3(sender, instance, using, **kwargs):
         instance.photo.delete(save=False)
 
+
 class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
     model = PhotoJournal
     template_name = "journal/upload_photo.html"
@@ -80,6 +81,7 @@ class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
             old_img = PhotoJournal.objects.get(pk=instance.pk)
             if old_img and old_img.photo.url != instance.photo.url:
                 old_img.photo.delete(save=False)
+
 
 class CursorPaginationPage(pagination.CursorPagination):
     page_size = 5
