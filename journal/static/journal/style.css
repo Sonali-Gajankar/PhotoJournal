@@ -6,7 +6,7 @@
     --btn-color-user: #C7BAC5;
     --font-size-heading: 32px;
     --font-size-subheading: 24px;
-    --font-size-para: 20px;
+    --font-size-para: 18px;
     --font-size-mobile-para: 15px;
 }
 * {
@@ -420,9 +420,9 @@ body, html {
     }
 
     #img_cards {
-    width: 75px;
-    height: 75px;
-    padding-left: 10px;
+        width: 70px;
+        height: 75px;
+        padding-left: 10px;
 }
 }
 
