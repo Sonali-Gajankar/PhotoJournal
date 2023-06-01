@@ -113,7 +113,10 @@ if (gallery_container && window.location.pathname=="/user-home/") {
 
 document.addEventListener("click", function(event){
     let target = event.target.closest(".icons__toggle");
-    let update_icons = target.previousElementSibling;
-    target.classList.toggle('is-active');
-    update_icons.classList.toggle('active');
+    if(target){
+        let update_icons = target.previousElementSibling;
+        target.classList.toggle('is-active');
+        update_icons.classList.toggle('active');
+    }
+
 })
