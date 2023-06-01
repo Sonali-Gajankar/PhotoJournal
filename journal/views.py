@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.dispatch import receiver
 from django.db import models
@@ -6,13 +6,10 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import pagination, generics, permissions
 
-from users.models import CustomUser
 from .models import PhotoJournal
 from .forms import UserPhotos
 from .serializer import PhotoSerializer
 
-
-# Create your views here.
 
 def home(request):
     if request.user.is_authenticated:
@@ -25,7 +22,6 @@ class UserHomeView(LoginRequiredMixin, generic.ListView):
     model = PhotoJournal
     form_class = UserPhotos
     context_object_name = "photo_list"
-    # template_name = "journal/user_home.html"
     ordering = ['-date']
 
     def get_template_names(self):
@@ -38,9 +34,9 @@ class UserHomeView(LoginRequiredMixin, generic.ListView):
 
 
 class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
+    login_url = "/login/"
     model = PhotoJournal
     template_name = "journal/upload_photo.html"
-    # fields = ["title", "description", "date", "photo"]
     form_class = UserPhotos
 
     def form_valid(self, form):
@@ -49,6 +45,7 @@ class UploadPhotoView(LoginRequiredMixin, generic.CreateView):
 
 
 class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
+    login_url = "/login/"
     model = PhotoJournal
     context_object_name = "post"
     success_url = reverse_lazy("user_home")
@@ -65,6 +62,7 @@ class DeletePhotoView(LoginRequiredMixin, generic.DeleteView):
 
 
 class UpdatePhotoView(LoginRequiredMixin, generic.UpdateView):
+    login_url = "/login/"
     model = PhotoJournal
     template_name = "journal/upload_photo.html"
     form_class = UserPhotos
