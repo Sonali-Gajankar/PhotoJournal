@@ -4,6 +4,18 @@ Echoes is an online journal where you get to put words to pictures and reminisce
 
 ## UI
 
+- Home Screen
+![](../../../../Downloads/echoes.up.railway.app_.png)
+- Registration
+![](../../../../Downloads/echoes.up.railway.app_signup_.png)
+- Login
+![](../../../../Downloads/echoes.up.railway.app_login_.png)
+- Main page upon login with no content
+- Main page upon login with content
+- Upload page
+- Delete page
+- Reset password 
+
 ## Development
 - The application supports a responsive design and is created using Django framework, Django Rest Framework, HTML, CSS, JavaScript built on top of PostgreSQL database. 
 - Application makes use of Django's built in authentication system with a custom User model to enable to user onboarding and authentication process. It also features a fully functional login system with the inclusion of password reset functionality.

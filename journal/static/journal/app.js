@@ -49,7 +49,6 @@ function loadScript(url){
         return result;
     })
     .then(result => {
-        console.log(result.next);
         next = result.next;
         loadContentOnScroll(result.results);
         return result;
@@ -60,7 +59,6 @@ function loadScript(url){
 }
 
 function loadContentOnScroll(result){
-    console.log(result);
     result.forEach(function(elem){
         let card = document.createElement("figure");
         card.innerHTML = `
@@ -100,7 +98,6 @@ const handleInfiniteScroll = () => {
     throttle(() => {
         const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
         if (endOfPage && next) {
-            console.log("this was reached");
             result = loadScript(next);
         }
     }, 1000);
