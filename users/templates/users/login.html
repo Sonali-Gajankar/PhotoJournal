@@ -8,6 +8,9 @@
         </div>
         <div class="auth_form__container">
             <form method="POST" class="login__form">
+                {% if form.errors %}
+                <p>Incorrect username/password. Please try again.</p>
+                {% endif %}
                 {% csrf_token %}
                 <h2>Login</h2>
                 <p>Don't have an account yet? <a href="{% url 'register' %}">Sign Up</a></p>
